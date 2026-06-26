@@ -1,0 +1,23 @@
+{
+  "model": "opus",
+  "statusLine": {
+    "type": "command",
+    "command": "bash /home/pi/.claude/statusline-command.sh"
+  },
+  "effortLevel": "high",
+  "skipDangerousModePermissionPrompt": true,
+  "theme": "dark",
+  "hooks": {
+    "SessionStart": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node \"$HOME/.claude/skills/config-privacy/scan.mjs\" 2>/dev/null || true",
+            "statusMessage": "Scanning settings for telemetry"
+          }
+        ]
+      }
+    ]
+  }
+}

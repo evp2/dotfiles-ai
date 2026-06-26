@@ -35,9 +35,6 @@ echo "--- Processing AI Agent Dotfiles ---"
 # Symlink agents/AGENTS.md
 symlink_file_or_dir "$DOTFILES_DIR/agents/AGENTS.md" "$HOME/.claude/AGENTS.md" # Assuming .claude for initial agent config
 
-# Symlink prompt_templates (as a directory)
-symlink_file_or_dir "$DOTFILES_DIR/agents/prompt_templates" "$HOME/.claude/prompt_templates"
-
 # Symlink CLAUDE.md
 symlink_file_or_dir "$DOTFILES_DIR/agents/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 
@@ -51,15 +48,15 @@ symlink_file_or_dir "$DOTFILES_DIR/config/claude/settings.json" "$HOME/.claude/s
 # Example: Symlink Copilot VS Code settings
 symlink_file_or_dir "$DOTFILES_DIR/config/copilot/vscode_settings.json" "$HOME/.config/Code/User/settings.json" # Adjust path as needed for VS Code or other editors
 
-# --- OpenClaw Skills Dotfiles ---
+# --- Claude Code Skills Dotfiles ---
 echo ""
-echo "--- Processing OpenClaw Skills Dotfiles ---"
+echo "--- Processing Claude Code Skills Dotfiles ---"
 
-# Example: Symlink a custom skill directory
-# For now, OpenClaw skills are typically managed via `openclaw install skill`
-# or by placing them directly in ~/.openclaw/workspace/skills.
-# If you want to symlink a *whole skill directory* from your dotfiles:
-# symlink_file_or_dir "$DOTFILES_DIR/skills/my_utility_skill" "$HOME/.openclaw/workspace/skills/my_utility_skill"
+# Symlink each skill directory into ~/.claude/skills/
+for skill_dir in "$DOTFILES_DIR"/skills/*/; do
+    [ -d "$skill_dir" ] || continue
+    symlink_file_or_dir "${skill_dir%/}" "$HOME/.claude/skills/$(basename "$skill_dir")"
+done
 
 
 echo ""
