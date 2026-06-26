@@ -38,8 +38,8 @@ symlink_file_or_dir "$DOTFILES_DIR/agents/AGENTS.md" "$HOME/.claude/AGENTS.md" #
 # Symlink prompt_templates (as a directory)
 symlink_file_or_dir "$DOTFILES_DIR/agents/prompt_templates" "$HOME/.claude/prompt_templates"
 
-# NOTE: CLAUDE.md and COPILOT.md are instructional/referential for now,
-# not directly symlinked as config files.
+# Symlink CLAUDE.md
+symlink_file_or_dir "$DOTFILES_DIR/agents/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 
 # --- AI Config Dotfiles ---
 echo ""
